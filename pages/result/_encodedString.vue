@@ -1,5 +1,5 @@
 <template>
-<div>
+<div class='body'>
     <h1 v-if='!isValid'>
         INVALID FORM
     </h1>
@@ -145,6 +145,11 @@ Here's what I played: gamervarietytest.com/result/PwcLg_9jgAN78AAAA
 */
 export default Vue.extend({
     name: 'ResultPage',
+    head() {
+        return {
+            title: 'Gamer Variety Test - Results'
+        }
+    },
     async asyncData({ params }) {
         return {
             encodedString: params.encodedString
@@ -208,3 +213,6 @@ export default Vue.extend({
     }
 })
 </script>
+
+<style lang='scss' scoped>
+</style>
