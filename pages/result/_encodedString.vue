@@ -7,6 +7,8 @@
         <h1>Gamer Variety Test</h1>
         <h4>This is a test to see what your variety of game franchises is. The list is largely adapted from <a href='https://en.wikipedia.org/wiki/List_of_best-selling_video_game_franchises'>Wikipedia's list of best-selling video game franchises</a></h4>
         <h2>RESULT: {{ this.selectedGames.length }}/100</h2>
+        <button @click='share'>Share</button>
+        <br><br>
         <span v-for='game in games'>
             <input type='checkbox' :id='game' :value='game' v-model='selectedGames' disabled>
             <label>{{ game.name }}</label>
@@ -194,6 +196,14 @@ export default Vue.extend({
                 arr.shift()
             }
             return result
+        },
+        share() {
+            navigator.clipboard
+                .writeText(`https://gamer-variety-test.vercel.app/result/${this.encodedString}`)
+                .then(() => {
+                    alert('Result copied to clipboard')
+                })
+
         }
     }
 })

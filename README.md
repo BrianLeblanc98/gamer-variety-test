@@ -1,1 +1,12 @@
-# gamer-variety-test-prod
+# Gamer Variety Test
+- Select each series that you've **played** a game of. You do not have to **like** that series
+- Mario should be split up
+  - Super Mario (platformers)
+  - Mario Kart
+  - Mario Party
+  - etc... check the wiki page
+- LEGO Star Wars is a LEGO entry and **not** a Star Wars entry
+- Star Wars is specifically:
+  - KOTR
+  - Battlefront 1/2
+  - etc...
