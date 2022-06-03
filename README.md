@@ -1,12 +1,42 @@
-# Gamer Variety Test
-- Select each series that you've **played** a game of. You do not have to **like** that series
-- Mario should be split up
-  - Super Mario (platformers)
-  - Mario Kart
-  - Mario Party
-  - etc... check the wiki page
-- LEGO Star Wars is a LEGO entry and **not** a Star Wars entry
-- Star Wars is specifically:
-  - KOTR
-  - Battlefront 1/2
-  - etc...
+# Nuxt 3 Minimal Starter
+
+Look at the [nuxt 3 documentation](https://v3.nuxtjs.org) to learn more.
+
+## Setup
+
+Make sure to install the dependencies:
+
+```bash
+# yarn
+yarn install
+
+# npm
+npm install
+
+# pnpm
+pnpm install --shamefully-hoist
+```
+
+## Development Server
+
+Start the development server on http://localhost:3000
+
+```bash
+npm run dev
+```
+
+## Production
+
+Build the application for production:
+
+```bash
+npm run build
+```
+
+Locally preview production build:
+
+```bash
+npm run preview
+```
+
+Checkout the [deployment documentation](https://v3.nuxtjs.org/guide/deploy/presets) for more information.

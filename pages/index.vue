@@ -1,10 +1,8 @@
 <template>
 <div class='body'>
-    <h1>Gamer Variety Test</h1>
-    <h4>This is a test to see what your variety of game franchises is. The list is largely adapted from <a href='https://en.wikipedia.org/wiki/List_of_best-selling_video_game_franchises'>Wikipedia's list of best-selling video game franchises</a></h4>
     <div>
         <span v-for='game in games'>
-            <input type='checkbox' :id='game' :value='game' v-model='selectedGames'>
+            <input type='checkbox' :id='game.name' :value='game' v-model='selectedGames'>
             <label>{{ game.name }}</label>
             <br>
         </span>
@@ -15,7 +13,7 @@
 </template>
 
 <script lang='ts'>
-import Vue from 'vue'
+import { defineComponent } from 'vue'
 
 interface Game {
     name: string;
@@ -133,38 +131,38 @@ const GAMES: Game[] = GAME_NAMES_ORDERED.map((name) => {
     }
 })
 
-export default Vue.extend({
-    name: 'IndexPage',
+export default defineComponent({
+    name: "IndexPage",
     head() {
         return {
-            title: 'Gamer Variety Test'
-        }
+            title: "Gamer Variety Test"
+        };
     },
     data() {
         return {
             games: GAMES,
             selectedGamesBinaryArray: [] as number[],
             selectedGames: [] as Game[]
-        }
+        };
     },
     methods: {
         encode(num: bigint): string {
-            let length = BigInt(ALPHABET.length)
-            let result = []
+            let length = BigInt(ALPHABET.length);
+            let result = [];
             do {
-                let r = Number(num % length)
-                num = num / length
-                result.unshift(ALPHABET[r])
-            } while (num > BigInt(0))
-            return result.join('')
+                let r = Number(num % length);
+                num = num / length;
+                result.unshift(ALPHABET[r]);
+            } while (num > BigInt(0));
+            return result.join("");
         },
         submitForm() {
-            this.selectedGamesBinaryArray = Array(100).fill(0)
+            this.selectedGamesBinaryArray = Array(100).fill(0);
             this.selectedGames.forEach((game) => {
-                this.selectedGamesBinaryArray[game.index] = 1
-            })
-            let encodedString = this.encode(BigInt(`0b${this.selectedGamesBinaryArray.join('')}`))
-            this.$router.push(`result/${encodedString}`)
+                this.selectedGamesBinaryArray[game.index] = 1;
+            });
+            let encodedString = this.encode(BigInt(`0b${this.selectedGamesBinaryArray.join("")}`));
+            this.$router.push(`/result/${encodedString}`);
         }
     }
 })

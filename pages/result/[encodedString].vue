@@ -4,13 +4,11 @@
         INVALID FORM
     </h1>
     <div v-if='isValid'>
-        <h1>Gamer Variety Test</h1>
-        <h4>This is a test to see what your variety of game franchises is. The list is largely adapted from <a href='https://en.wikipedia.org/wiki/List_of_best-selling_video_game_franchises'>Wikipedia's list of best-selling video game franchises</a></h4>
-        <h2>RESULT: {{ this.selectedGames.length }}/100</h2>
+        <h2>RESULT: {{ selectedGames.length }}/100</h2>
         <button @click='share'>Share</button>
         <br><br>
         <span v-for='game in games'>
-            <input type='checkbox' :id='game' :value='game' v-model='selectedGames' disabled>
+            <input type='checkbox' :id='game.name' :value='game' v-model='selectedGames' disabled>
             <label>{{ game.name }}</label>
             <br>
         </span>
@@ -19,7 +17,7 @@
 </template>
 
 <script lang='ts'>
-import Vue from 'vue'
+import { defineComponent } from 'vue'
 
 interface Game {
     name: string;
@@ -143,72 +141,64 @@ nice
 
 Here's what I played: gamervarietytest.com/result/PwcLg_9jgAN78AAAA
 */
-export default Vue.extend({
-    name: 'ResultPage',
+export default defineComponent({
+    name: "ResultPage",
     head() {
         return {
-            title: 'Gamer Variety Test - Results'
-        }
-    },
-    async asyncData({ params }) {
-        return {
-            encodedString: params.encodedString
-        }
+            title: "Gamer Variety Test - Results"
+        };
     },
     data() {
         return {
-            encodedString: '',
+            encodedString: this.$route.params.encodedString as string,
             decodedNumber: BigInt(0),
             isValid: true,
             games: GAMES,
             selectedGames: [] as Game[]
-        }
+        };
     },
     mounted() {
-        this.decodedNumber = this.decode(this.encodedString)
+        this.decodedNumber = this.decode(this.encodedString);
         if (this.decodedNumber > MAX_ID || this.decodedNumber < 0) {
-            this.isValid = false
+            this.isValid = false;
         }
-
-        let binaryArray = [...this.decodedNumber.toString(2).padStart(100, '0')]
+        let binaryArray = [...this.decodedNumber.toString(2).padStart(100, "0")];
         this.games.forEach((game) => {
-            let isSelected = parseInt(binaryArray[game.index])
+            let isSelected = parseInt(binaryArray[game.index]);
             if (isSelected) {
-                this.selectedGames.push(game)
+                this.selectedGames.push(game);
             }
-        })
+        });
     },
     methods: {
         bigIntPower(base: number, exp: number): bigint {
-            let result = BigInt(1)
-            for(let i = 0; i < exp; i++) {
-                result *= BigInt(base)
+            let result = BigInt(1);
+            for (let i = 0; i < exp; i++) {
+                result *= BigInt(base);
             }
-            return result
+            return result;
         },
         decode(str: string): bigint {
-            let base = ALPHABET.length
-            let arr = [...str]
-            let result = BigInt(0)
+            let base = ALPHABET.length;
+            let arr = [...str];
+            let result = BigInt(0);
             while (arr.length > 0) {
-                let d = BigInt(ALPHABET.indexOf(arr[0]))
+                let d = BigInt(ALPHABET.indexOf(arr[0]));
                 if (d < 0) {
-                    return BigInt(-1)
+                    return BigInt(-1);
                 }
-
-                let n = arr.length - 1
-                result += d * this.bigIntPower(base, n)
-                arr.shift()
+                let n = arr.length - 1;
+                result += d * this.bigIntPower(base, n);
+                arr.shift();
             }
-            return result
+            return result;
         },
         share() {
             navigator.clipboard
                 .writeText(`https://gamer-variety-test.vercel.app/result/${this.encodedString}`)
                 .then(() => {
-                    alert('Result copied to clipboard')
-                })
-
+                    alert("Result copied to clipboard");
+                });
         }
     }
 })
