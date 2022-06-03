@@ -38,7 +38,7 @@ const GAME_NAMES_ORDERED = [
     'Need for Speed',
     'Sonic',
     'Madden NFL',
-    'The Legend of Zela',
+    'The Legend of Zelda',
     'Resident Evil',
     'Star Wars',
     'NBA 2K',
