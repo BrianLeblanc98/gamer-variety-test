@@ -1,4 +1,4 @@
-export const ROOT_URL = 'https://gamer-variety-test.vercel.app'
+export const ROOT_URL = 'https://www.gamervarietytest.com'
 export const ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_'
 export const MAX_ID = BigInt('0b1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111')
 
