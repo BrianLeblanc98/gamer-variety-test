@@ -14,4 +14,33 @@ export default defineComponent({
 </script>
 
 <style lang='scss' scoped>
+$linkColor: #AFAFFF;
+.body {
+    text-align: center;
+    background: rgb(4, 0, 20);
+}
+
+h1 {
+    margin-top: 0px;
+}
+
+a:link {
+    text-decoration: none;
+    color: $linkColor;
+}
+
+a:visited {
+    text-decoration: none;
+    color: $linkColor;
+}
+
+a:hover {
+    text-decoration: underline;
+    color: $linkColor;
+}
+
+a:active {
+    text-decoration: underline;
+    color: $linkColor;
+}
 </style>

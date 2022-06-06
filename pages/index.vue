@@ -1,12 +1,12 @@
 <template>
 <div class='body'>
     <div>
-        <span v-for='game in games'>
-            <input type='checkbox' :id='game.name' :value='game' v-model='selectedGames'>
-            <label>{{ game.name }}</label>
-            <br>
-        </span>
-        <br>
+        <ol class='game-list'>
+            <li v-for='game in games'>
+                <input type='checkbox' :id='game.name' :value='game' v-model='selectedGames'>
+                <label>{{ game.name }}</label>
+            </li>
+        </ol>
         <button @click='submitForm'>Submit</button>
     </div>
 </div>
@@ -43,4 +43,12 @@ export default defineComponent({
 </script>
 
 <style lang='scss' scoped>
+.game-list {
+    li {
+        margin: 4px;
+        label {
+            margin: 4px;
+        }
+    }
+}
 </style>

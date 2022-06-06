@@ -6,12 +6,12 @@
     <div v-if='isValid'>
         <h2>RESULT: {{ selectedGames.length }}/100</h2>
         <button @click='share'>Share</button>
-        <br><br>
-        <span v-for='game in games'>
-            <input type='checkbox' :id='game.name' :value='game' v-model='selectedGames' disabled>
-            <label>{{ game.name }}</label>
-            <br>
-        </span>
+        <ol class='game-list'>
+            <li v-for='game in games'>
+                <input type='checkbox' :id='game.name' :value='game' v-model='selectedGames' disabled>
+                <label>{{ game.name }}</label>
+            </li>
+        </ol>
     </div>
 </div>
 </template>
@@ -43,6 +43,7 @@ export default defineComponent({
         };
     },
     mounted() {
+        window.scrollTo(0, 0)
         this.decodedNumber = DECODE(this.encodedString);
         if (this.decodedNumber > MAX_ID || this.decodedNumber < 0) {
             this.isValid = false;
@@ -68,4 +69,12 @@ export default defineComponent({
 </script>
 
 <style lang='scss' scoped>
+.game-list {
+    li {
+        margin: 4px;
+        label {
+            margin: 4px;
+        }
+    }
+}
 </style>
